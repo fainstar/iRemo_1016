@@ -1,0 +1,645 @@
+{
+  "analysis_type": "特徵箱子與未來窗口高點、低點關係分析",
+  "data_overview": {
+    "total_samples": 500,
+    "binned_features_count": 32,
+    "analysis_period": {
+      "start": "2025-07-26 08:00:00",
+      "end": "2025-10-17 12:00:00"
+    }
+  },
+  "top_features": [
+    {
+      "rank": 1,
+      "feature_name": "Weekday_binned",
+      "prediction_score": 0.0691,
+      "high_point_analysis": {
+        "0": {
+          "sample_count": 163,
+          "avg_change_pct": 0.0167,
+          "change_std": 0.0129,
+          "up_count": 162,
+          "up_probability": 0.9643
+        },
+        "1": {
+          "sample_count": 12,
+          "avg_change_pct": 0.0201,
+          "change_std": 0.0142,
+          "up_count": 12,
+          "up_probability": 1.0
+        },
+        "3": {
+          "sample_count": 172,
+          "avg_change_pct": 0.0181,
+          "change_std": 0.0142,
+          "up_count": 172,
+          "up_probability": 0.9885
+        },
+        "5": {
+          "sample_count": 20,
+          "avg_change_pct": 0.0215,
+          "change_std": 0.018,
+          "up_count": 20,
+          "up_probability": 0.8333
+        },
+        "6": {
+          "sample_count": 110,
+          "avg_change_pct": 0.0185,
+          "change_std": 0.0142,
+          "up_count": 110,
+          "up_probability": 0.9016
+        }
+      },
+      "low_point_analysis": {
+        "0": {
+          "sample_count": 163,
+          "avg_change_pct": -0.0213,
+          "change_std": 0.0248,
+          "up_count": 160,
+          "up_probability": 0.9524
+        },
+        "1": {
+          "sample_count": 12,
+          "avg_change_pct": -0.0159,
+          "change_std": 0.0071,
+          "up_count": 12,
+          "up_probability": 1.0
+        },
+        "3": {
+          "sample_count": 172,
+          "avg_change_pct": -0.0221,
+          "change_std": 0.0304,
+          "up_count": 172,
+          "up_probability": 0.9885
+        },
+        "5": {
+          "sample_count": 20,
+          "avg_change_pct": -0.0171,
+          "change_std": 0.0185,
+          "up_count": 20,
+          "up_probability": 0.8333
+        },
+        "6": {
+          "sample_count": 110,
+          "avg_change_pct": -0.0199,
+          "change_std": 0.0237,
+          "up_count": 110,
+          "up_probability": 0.9016
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "feature_name": "BBU_20_2.0_binned",
+      "prediction_score": 0.019,
+      "high_point_analysis": {
+        "0.0": {
+          "sample_count": 117,
+          "avg_change_pct": 0.0191,
+          "change_std": 0.0147,
+          "up_count": 117,
+          "up_probability": 0.975
+        },
+        "1.0": {
+          "sample_count": 78,
+          "avg_change_pct": 0.0187,
+          "change_std": 0.0148,
+          "up_count": 78,
+          "up_probability": 0.975
+        },
+        "2.0": {
+          "sample_count": 77,
+          "avg_change_pct": 0.0176,
+          "change_std": 0.0142,
+          "up_count": 76,
+          "up_probability": 0.9383
+        },
+        "3.0": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0184,
+          "change_std": 0.0141,
+          "up_count": 79,
+          "up_probability": 0.9875
+        },
+        "4.0": {
+          "sample_count": 118,
+          "avg_change_pct": 0.0168,
+          "change_std": 0.0124,
+          "up_count": 118,
+          "up_probability": 0.9833
+        }
+      },
+      "low_point_analysis": {
+        "0.0": {
+          "sample_count": 117,
+          "avg_change_pct": -0.0246,
+          "change_std": 0.0333,
+          "up_count": 116,
+          "up_probability": 0.9667
+        },
+        "1.0": {
+          "sample_count": 78,
+          "avg_change_pct": -0.0216,
+          "change_std": 0.0279,
+          "up_count": 78,
+          "up_probability": 0.975
+        },
+        "2.0": {
+          "sample_count": 77,
+          "avg_change_pct": -0.0188,
+          "change_std": 0.0217,
+          "up_count": 76,
+          "up_probability": 0.9383
+        },
+        "3.0": {
+          "sample_count": 79,
+          "avg_change_pct": -0.019,
+          "change_std": 0.0218,
+          "up_count": 79,
+          "up_probability": 0.9875
+        },
+        "4.0": {
+          "sample_count": 118,
+          "avg_change_pct": -0.0198,
+          "change_std": 0.0231,
+          "up_count": 117,
+          "up_probability": 0.975
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "feature_name": "open_binned",
+      "prediction_score": 0.0175,
+      "high_point_analysis": {
+        "0": {
+          "sample_count": 117,
+          "avg_change_pct": 0.0219,
+          "change_std": 0.0143,
+          "up_count": 116,
+          "up_probability": 0.928
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0196,
+          "change_std": 0.0152,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 80,
+          "avg_change_pct": 0.0192,
+          "change_std": 0.014,
+          "up_count": 80,
+          "up_probability": 0.9524
+        },
+        "3": {
+          "sample_count": 80,
+          "avg_change_pct": 0.0167,
+          "change_std": 0.0131,
+          "up_count": 80,
+          "up_probability": 0.9639
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": 0.0128,
+          "change_std": 0.0116,
+          "up_count": 121,
+          "up_probability": 0.968
+        }
+      },
+      "low_point_analysis": {
+        "0": {
+          "sample_count": 117,
+          "avg_change_pct": -0.0156,
+          "change_std": 0.0257,
+          "up_count": 115,
+          "up_probability": 0.92
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0166,
+          "change_std": 0.0201,
+          "up_count": 78,
+          "up_probability": 0.9398
+        },
+        "2": {
+          "sample_count": 80,
+          "avg_change_pct": -0.0221,
+          "change_std": 0.0273,
+          "up_count": 80,
+          "up_probability": 0.9524
+        },
+        "3": {
+          "sample_count": 80,
+          "avg_change_pct": -0.0224,
+          "change_std": 0.0221,
+          "up_count": 80,
+          "up_probability": 0.9639
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": -0.0273,
+          "change_std": 0.0304,
+          "up_count": 121,
+          "up_probability": 0.968
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "feature_name": "close_binned",
+      "prediction_score": 0.0164,
+      "high_point_analysis": {
+        "0": {
+          "sample_count": 118,
+          "avg_change_pct": 0.0241,
+          "change_std": 0.0149,
+          "up_count": 118,
+          "up_probability": 0.944
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0197,
+          "change_std": 0.014,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0183,
+          "change_std": 0.0121,
+          "up_count": 79,
+          "up_probability": 0.9405
+        },
+        "3": {
+          "sample_count": 81,
+          "avg_change_pct": 0.0162,
+          "change_std": 0.0137,
+          "up_count": 81,
+          "up_probability": 0.9759
+        },
+        "4": {
+          "sample_count": 120,
+          "avg_change_pct": 0.0114,
+          "change_std": 0.0111,
+          "up_count": 119,
+          "up_probability": 0.952
+        }
+      },
+      "low_point_analysis": {
+        "0": {
+          "sample_count": 118,
+          "avg_change_pct": -0.0135,
+          "change_std": 0.0256,
+          "up_count": 116,
+          "up_probability": 0.928
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0178,
+          "change_std": 0.0257,
+          "up_count": 78,
+          "up_probability": 0.9398
+        },
+        "2": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0219,
+          "change_std": 0.0268,
+          "up_count": 79,
+          "up_probability": 0.9405
+        },
+        "3": {
+          "sample_count": 81,
+          "avg_change_pct": -0.0229,
+          "change_std": 0.0219,
+          "up_count": 81,
+          "up_probability": 0.9759
+        },
+        "4": {
+          "sample_count": 120,
+          "avg_change_pct": -0.0285,
+          "change_std": 0.0274,
+          "up_count": 120,
+          "up_probability": 0.96
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "feature_name": "low_binned",
+      "prediction_score": 0.0164,
+      "high_point_analysis": {
+        "0": {
+          "sample_count": 119,
+          "avg_change_pct": 0.0223,
+          "change_std": 0.0143,
+          "up_count": 118,
+          "up_probability": 0.944
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": 0.02,
+          "change_std": 0.0146,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0188,
+          "change_std": 0.0137,
+          "up_count": 79,
+          "up_probability": 0.9294
+        },
+        "3": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0165,
+          "change_std": 0.013,
+          "up_count": 79,
+          "up_probability": 0.9634
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": 0.0125,
+          "change_std": 0.0121,
+          "up_count": 121,
+          "up_probability": 0.968
+        }
+      },
+      "low_point_analysis": {
+        "0": {
+          "sample_count": 119,
+          "avg_change_pct": -0.0141,
+          "change_std": 0.0255,
+          "up_count": 117,
+          "up_probability": 0.936
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": -0.019,
+          "change_std": 0.0259,
+          "up_count": 78,
+          "up_probability": 0.9398
+        },
+        "2": {
+          "sample_count": 79,
+          "avg_change_pct": -0.021,
+          "change_std": 0.0265,
+          "up_count": 79,
+          "up_probability": 0.9294
+        },
+        "3": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0207,
+          "change_std": 0.0151,
+          "up_count": 79,
+          "up_probability": 0.9634
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": -0.0292,
+          "change_std": 0.0304,
+          "up_count": 121,
+          "up_probability": 0.968
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "feature_name": "Volume_MA20_binned",
+      "prediction_score": 0.0159,
+      "high_point_analysis": {
+        "0.0": {
+          "sample_count": 115,
+          "avg_change_pct": 0.0191,
+          "change_std": 0.0151,
+          "up_count": 115,
+          "up_probability": 0.9583
+        },
+        "1.0": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0187,
+          "change_std": 0.0151,
+          "up_count": 79,
+          "up_probability": 0.9875
+        },
+        "2.0": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0177,
+          "change_std": 0.0138,
+          "up_count": 79,
+          "up_probability": 0.9753
+        },
+        "3.0": {
+          "sample_count": 79,
+          "avg_change_pct": 0.018,
+          "change_std": 0.0127,
+          "up_count": 79,
+          "up_probability": 0.9875
+        },
+        "4.0": {
+          "sample_count": 117,
+          "avg_change_pct": 0.017,
+          "change_std": 0.013,
+          "up_count": 116,
+          "up_probability": 0.9667
+        }
+      },
+      "low_point_analysis": {
+        "0.0": {
+          "sample_count": 115,
+          "avg_change_pct": -0.0239,
+          "change_std": 0.0338,
+          "up_count": 113,
+          "up_probability": 0.9417
+        },
+        "1.0": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0218,
+          "change_std": 0.0239,
+          "up_count": 79,
+          "up_probability": 0.9875
+        },
+        "2.0": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0186,
+          "change_std": 0.0205,
+          "up_count": 79,
+          "up_probability": 0.9753
+        },
+        "3.0": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0207,
+          "change_std": 0.0262,
+          "up_count": 79,
+          "up_probability": 0.9875
+        },
+        "4.0": {
+          "sample_count": 117,
+          "avg_change_pct": -0.0194,
+          "change_std": 0.0233,
+          "up_count": 116,
+          "up_probability": 0.9667
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "feature_name": "EMA_20_binned",
+      "prediction_score": 0.0151,
+      "high_point_analysis": {
+        "0": {
+          "sample_count": 117,
+          "avg_change_pct": 0.0214,
+          "change_std": 0.0148,
+          "up_count": 116,
+          "up_probability": 0.928
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0196,
+          "change_std": 0.0146,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 80,
+          "avg_change_pct": 0.0182,
+          "change_std": 0.0138,
+          "up_count": 80,
+          "up_probability": 0.9524
+        },
+        "3": {
+          "sample_count": 80,
+          "avg_change_pct": 0.0166,
+          "change_std": 0.0121,
+          "up_count": 80,
+          "up_probability": 0.9639
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": 0.0141,
+          "change_std": 0.013,
+          "up_count": 121,
+          "up_probability": 0.968
+        }
+      },
+      "low_point_analysis": {
+        "0": {
+          "sample_count": 117,
+          "avg_change_pct": -0.0182,
+          "change_std": 0.0257,
+          "up_count": 116,
+          "up_probability": 0.928
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0196,
+          "change_std": 0.026,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 80,
+          "avg_change_pct": -0.0196,
+          "change_std": 0.0227,
+          "up_count": 79,
+          "up_probability": 0.9405
+        },
+        "3": {
+          "sample_count": 80,
+          "avg_change_pct": -0.0206,
+          "change_std": 0.0223,
+          "up_count": 80,
+          "up_probability": 0.9639
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": -0.0257,
+          "change_std": 0.0307,
+          "up_count": 120,
+          "up_probability": 0.96
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "feature_name": "MACDh_12_26_9_binned",
+      "prediction_score": 0.015,
+      "high_point_analysis": {
+        "0": {
+          "sample_count": 117,
+          "avg_change_pct": 0.0224,
+          "change_std": 0.0148,
+          "up_count": 117,
+          "up_probability": 0.936
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": 0.0193,
+          "change_std": 0.0138,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 80,
+          "avg_change_pct": 0.0168,
+          "change_std": 0.0128,
+          "up_count": 80,
+          "up_probability": 0.9524
+        },
+        "3": {
+          "sample_count": 80,
+          "avg_change_pct": 0.0177,
+          "change_std": 0.014,
+          "up_count": 80,
+          "up_probability": 0.9639
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": 0.0135,
+          "change_std": 0.0125,
+          "up_count": 120,
+          "up_probability": 0.96
+        }
+      },
+      "low_point_analysis": {
+        "0": {
+          "sample_count": 117,
+          "avg_change_pct": -0.0128,
+          "change_std": 0.0169,
+          "up_count": 115,
+          "up_probability": 0.92
+        },
+        "1": {
+          "sample_count": 79,
+          "avg_change_pct": -0.0179,
+          "change_std": 0.0211,
+          "up_count": 79,
+          "up_probability": 0.9518
+        },
+        "2": {
+          "sample_count": 80,
+          "avg_change_pct": -0.0221,
+          "change_std": 0.0263,
+          "up_count": 79,
+          "up_probability": 0.9405
+        },
+        "3": {
+          "sample_count": 80,
+          "avg_change_pct": -0.0231,
+          "change_std": 0.027,
+          "up_count": 80,
+          "up_probability": 0.9639
+        },
+        "4": {
+          "sample_count": 121,
+          "avg_change_pct": -0.0288,
+          "change_std": 0.0329,
+          "up_count": 121,
+          "up_probability": 0.968
+        }
+      }
+    }
+  ]
+}

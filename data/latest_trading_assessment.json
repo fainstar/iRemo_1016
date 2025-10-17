@@ -1,0 +1,22 @@
+{
+  "assessment_time": "2025-10-17 20:00:00 +08",
+  "original_utc_time": "2025-10-17 12:00:00 UTC",
+  "candlestick_data": {
+    "open": 105683.71,
+    "high": 106497.87,
+    "low": 104533.21,
+    "close": 106461.49
+  },
+  "trading_signals": {
+    "buy_score": 0.5,
+    "sell_score": 0.0
+  },
+  "analysis": {
+    "price_change": 777.78,
+    "price_range": 1964.66,
+    "body_size": 777.78,
+    "upper_shadow": 36.38,
+    "lower_shadow": 1150.5
+  },
+  "recommendation": "買入"
+}
