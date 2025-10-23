@@ -8,8 +8,8 @@
     "close": 106461.49
   },
   "trading_signals": {
-    "buy_score": 0.5,
-    "sell_score": 0.0
+    "buy_score": 0.93,
+    "sell_score": 0.073
   },
   "analysis": {
     "price_change": 777.78,
@@ -18,5 +18,5 @@
     "upper_shadow": 36.38,
     "lower_shadow": 1150.5
   },
-  "recommendation": "買入"
+  "recommendation": "強烈買入"
 }
