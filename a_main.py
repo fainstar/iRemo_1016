@@ -19,16 +19,22 @@ def scheduled_job():
     # 發送到 Discord
     subprocess.run(["python3", "send_to_discord.py"])
 
-# Schedule the job at the specified times
-schedule.every().day.at("23:55").do(scheduled_job)
-schedule.every().day.at("19:55").do(scheduled_job)
-schedule.every().day.at("15:55").do(scheduled_job)
-schedule.every().day.at("11:55").do(scheduled_job)
-schedule.every().day.at("07:55").do(scheduled_job)
-schedule.every().day.at("03:55").do(scheduled_job)
+def C4h_run():
+    # Schedule the job at the specified times
+    schedule.every().day.at("23:55").do(scheduled_job)
+    schedule.every().day.at("19:55").do(scheduled_job)
+    schedule.every().day.at("15:55").do(scheduled_job)
+    schedule.every().day.at("11:55").do(scheduled_job)
+    schedule.every().day.at("07:55").do(scheduled_job)
+    schedule.every().day.at("03:55").do(scheduled_job)
+    # Keep the script running
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
-# Keep the script running
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-
+if __name__ == "__main__":
+    flag = True  
+    if flag:
+        C4h_run()
+    else:
+        scheduled_job()   

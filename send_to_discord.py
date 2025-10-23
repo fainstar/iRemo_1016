@@ -147,8 +147,7 @@ def main():
         return
 
     # 獲取webhook URL
-    webhook_url = "https://discord.com/api/webhooks/1428770104023322748/G5mnhSn9AgxvNhBtR9Ld5Tc7jhtf8ksdElWkpIzGjgX9fZjf_nH9lmwke7tUHDN86Ind"
-  
+    webhook_url = "https://discord.com/api/webhooks/1426931603870978181/TQPCP9zPF8AbCEZokiZ-rrfpaeprmWWs6X0mvVtvuntCdIaFCmFpEgZ0vokelDjcEPfz"
 
     # 創建embed
     embed = create_discord_embed(assessment_data)
