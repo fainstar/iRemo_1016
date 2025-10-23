@@ -276,11 +276,3 @@ with open('data/feature_analysis_report.json', 'w', encoding='utf-8') as f:
     json.dump(json_report, f, ensure_ascii=False, indent=2)
 
 print("JSON報告已保存到: feature_analysis_report.json")
-
-print(f"\n\n{'='*80}")
-print("分析完成！")
-print("您可以使用以下方法進行進一步分析：")
-print("1. analyzer.analyze_single_feature('特徵名_binned') - 分析單個特徵")
-print("2. analyzer.plot_feature_analysis('特徵名_binned') - 繪製特徵圖表") 
-print("3. analyzer.analyze_all_features() - 重新分析所有特徵")
-print(f"{'='*80}")

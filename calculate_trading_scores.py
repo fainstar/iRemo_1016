@@ -103,11 +103,31 @@ print("開始計算買入與賣出分數（依據 feature_analysis_report.json�
 df['buy_score'] = df.apply(calculate_buy_score, axis=1)
 df['sell_score'] = df.apply(calculate_sell_score, axis=1)
 
-# 可選：算一個綜合分數（買 - 賣），供後續排序或過濾使用
+# 可選：先算一個暫時的綜合分數（買 - 賣），供參考。後續會在標準化後以標準化分數重算。
+df['signal_score'] = df['buy_score'] - df['sell_score']
+
+# --- 標準化處理: z-score (mean=0, std=1) ---
+# 我們保留原始分數欄位，並新增標準化後的欄位 buy_score_z, sell_score_z。
+# 若標準差為 0（常數欄），則把 z-score 設為 0 以避免除以零。
+def z_score_series(s: pd.Series) -> pd.Series:
+    mean = s.mean()
+    std = s.std(ddof=0)
+    if std == 0 or pd.isna(std):
+        return pd.Series([0.0] * len(s), index=s.index)
+    return (s - mean) / std
+
+df['buy_score_z'] = z_score_series(df['buy_score'])
+df['sell_score_z'] = z_score_series(df['sell_score'])
+
+# 覆寫原始 buy_score 與 sell_score 為標準化後的值（若你希望保留原值，可移除此覆寫）
+df['buy_score'] = df['buy_score_z']
+df['sell_score'] = df['sell_score_z']
+
+# 重新以標準化後的分數計算綜合分數
 df['signal_score'] = df['buy_score'] - df['sell_score']
 
 # 保存結果
-output_cols = ['Date', 'open', 'high', 'low', 'close', 'buy_score', 'sell_score', 'signal_score']
+output_cols = ['Date', 'open', 'high', 'low', 'close', 'buy_score', 'sell_score', 'buy_score_z', 'sell_score_z', 'signal_score']
 available_cols = [c for c in output_cols if c in df.columns]
 output_df = df[available_cols]
 output_df.to_csv('data/trading_signals_with_scores.csv', index=False)
