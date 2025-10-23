@@ -43,34 +43,17 @@ def generate_latest_assessment():
 
     return assessment
 
-def load_thresholds(path='data/optimal_thresholds.json'):
-    try:
-        with open(path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            # 支援舊格式直接放 best
-            best = data.get('best') if isinstance(data, dict) else None
-            if best:
-                return float(best.get('buy_t', 0.75)), float(best.get('sell_t', 0.75))
-    except Exception:
-        pass
-    # fallback default
-    return 0.75, 0.5
-
-
 def get_recommendation(buy_score, sell_score):
     """
-    根據買賣分數與歷史最佳閥值給出推薦
+    根據買賣分數給出推薦
     """
-    buy_t, sell_t = load_thresholds()
-
-    if buy_score >= buy_t:
+    if buy_score >= 0.75:
         return "強烈買入"
-    elif buy_score >= max(0.5, buy_t * 0.66):
-        # 以 buy_t 為基準給次一級的買入建議
+    elif buy_score >= 0.5:
         return "買入"
-    elif sell_score >= sell_t:
+    elif sell_score >= 0.75:
         return "強烈賣出"
-    elif sell_score >= max(0.5, sell_t * 0.66):
+    elif sell_score >= 0.5:
         return "賣出"
     else:
         return "觀望"
