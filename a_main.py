@@ -19,24 +19,24 @@ def scheduled_job():
     # 發送到 Discord
     subprocess.run(["python3", "send_to_discord.py"])
     # 根據評估報告執行交易建議
-    subprocess.run(["python3", "go_again.py"])
+    subprocess.run(["python3", "go_again.py" , "--live"])
 
 
 def C4h_run():
     # Schedule the job at the specified times
-    schedule.every().day.at("23:55").do(scheduled_job)
-    schedule.every().day.at("19:55").do(scheduled_job)
-    schedule.every().day.at("15:55").do(scheduled_job)
-    schedule.every().day.at("11:55").do(scheduled_job)
-    schedule.every().day.at("07:55").do(scheduled_job)
-    schedule.every().day.at("03:55").do(scheduled_job)
+    schedule.every().day.at("23:56").do(scheduled_job)
+    schedule.every().day.at("19:56").do(scheduled_job)
+    schedule.every().day.at("15:56").do(scheduled_job)
+    schedule.every().day.at("11:56").do(scheduled_job)
+    schedule.every().day.at("07:56").do(scheduled_job)
+    schedule.every().day.at("03:56").do(scheduled_job)
     # Keep the script running
     while True:
         schedule.run_pending()
         time.sleep(1)
 
 if __name__ == "__main__":
-    flag = False
+    flag = True
     if flag:
         C4h_run()
     else:
