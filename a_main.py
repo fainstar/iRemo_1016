@@ -18,6 +18,9 @@ def scheduled_job():
     subprocess.run(["python3", "generate_latest_assessment.py"])
     # 發送到 Discord
     subprocess.run(["python3", "send_to_discord.py"])
+    # 根據評估報告執行交易建議
+    subprocess.run(["python3", "go_again.py"])
+
 
 def C4h_run():
     # Schedule the job at the specified times
