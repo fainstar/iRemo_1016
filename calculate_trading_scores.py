@@ -78,5 +78,3 @@ output_df.to_csv('data/trading_signals_with_scores.csv', index=False)
 
 print("完成！結果已保存到 trading_signals_with_scores.csv")
 print(f"數據行數: {len(output_df)}")
-print(".2f")
-print(".2f")
