@@ -1,0 +1,14 @@
+# Ignore local API keys and secrets
+user/api.config
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+
+# Data outputs
+data/*.csv
+data/*.json
+
+# Virtual env
+venv/
+.env

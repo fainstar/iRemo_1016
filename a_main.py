@@ -33,7 +33,7 @@ def C4h_run():
         time.sleep(1)
 
 if __name__ == "__main__":
-    flag = True  
+    flag = False
     if flag:
         C4h_run()
     else:
