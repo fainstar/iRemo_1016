@@ -71,14 +71,14 @@ def get_recommendation(buy_score, sell_score):
     if buy_score > sell_score + 0.25:
         if buy_score >= 0.75:
             return "強烈買入"
-        elif buy_score > 0.5:
+        elif buy_score >= 0.5:
             return "買入"
     
     # 賣出信號顯著高於買入信號
     elif sell_score > buy_score + 0.25:
         if sell_score >= 0.75:
             return "強烈賣出"
-        elif sell_score > 0.5:
+        elif sell_score >= 0.5:
             return "賣出"
     
     # 其他（分數接近或信號不明確）
