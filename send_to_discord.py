@@ -7,6 +7,9 @@ import json
 import requests
 from datetime import datetime
 import sys
+import os
+import ast
+from pathlib import Path
 
 def load_assessment_data():
     """載入最新的評估數據"""
@@ -146,9 +149,29 @@ def main():
     if not assessment_data:
         return
 
-    # 獲取webhook URL
-    webhook_url = "https://discord.com/api/webhooks/1426931603870978181/TQPCP9zPF8AbCEZokiZ-rrfpaeprmWWs6X0mvVtvuntCdIaFCmFpEgZ0vokelDjcEPfz"
+    # 嘗試從 config 或 environment 讀取 Discord webhook（變數名: DISCORD_WEBHOOK_RUN）
+    def _load_config(path: str):
+        cfg = {}
+        try:
+            p = Path(path)
+            if not p.exists():
+                return cfg
+            src = p.read_text(encoding='utf-8')
+            tree = ast.parse(src, mode='exec')
+            for node in tree.body:
+                if isinstance(node, ast.Assign):
+                    for target in node.targets:
+                        if isinstance(target, ast.Name):
+                            name = target.id
+                            val = node.value
+                            if isinstance(val, ast.Constant) and isinstance(val.value, str):
+                                cfg[name] = val.value
+        except Exception:
+            return {}
+        return cfg
 
+    cfg = _load_config('user/api.config')
+    webhook_url = cfg.get('DISCORD_WEBHOOK_RUN') 
     # 創建embed
     embed = create_discord_embed(assessment_data)
 
