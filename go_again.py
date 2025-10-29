@@ -8,6 +8,9 @@ SYMBOL = "BTCUSDT"
 API_KEY = ""
 SECRET_KEY = ""
 
+# === 時間偏移初始化 ===
+TIME_OFFSET = 0
+
 
 # === 載入設定檔 ===
 def load_api_config(path: str):
@@ -31,6 +34,20 @@ def load_api_config(path: str):
     return cfg
 
 
+# === 取得 Binance 伺服器時間偏移 ===
+def get_server_time_offset():
+    """計算本地與 Binance 伺服器時間差（毫秒）"""
+    global TIME_OFFSET
+    try:
+        server_time = requests.get(BASE_URL + "/fapi/v1/time", timeout=5).json()["serverTime"]
+        local_time = int(time.time() * 1000)
+        TIME_OFFSET = server_time - local_time
+        print(f"🕒 與伺服器時間差：{TIME_OFFSET} ms\n")
+    except Exception as e:
+        print(f"⚠️ 無法取得伺服器時間差：{e}")
+        TIME_OFFSET = 0
+
+
 # === 通用 API 請求 ===
 def _sign(params):
     q = "&".join([f"{k}={v}" for k, v in params.items()])
@@ -40,7 +57,9 @@ def _sign(params):
 def _req(method, endpoint, params=None):
     if params is None:
         params = {}
-    params["timestamp"] = int(time.time() * 1000)
+    # 使用修正後的時間戳
+    params["timestamp"] = int(time.time() * 1000 + TIME_OFFSET)
+    params["recvWindow"] = 5000  # 允許 5 秒誤差
     params["signature"] = _sign(params)
     headers = {"X-MBX-APIKEY": API_KEY}
     url = BASE_URL + endpoint
@@ -59,27 +78,31 @@ def setup():
     if _req("GET", "/fapi/v1/ping") == {}:
         print("✅ API 連線成功")
     else:
-        print("❌ API 連線失敗"); return False
+        print("❌ API 連線失敗")
+        return False
 
     acc = _req("GET", "/fapi/v2/account")
     if "availableBalance" in acc:
         print(f"✅ 帳戶驗證成功，可用餘額：{acc['availableBalance']} USDT")
     else:
-        print("❌ 帳戶驗證失敗:", acc); return False
+        print("❌ 帳戶驗證失敗:", acc)
+        return False
 
     print("\n⚙️ 嘗試設定全倉模式...")
     m = _req("POST", "/fapi/v1/marginType", {"symbol": SYMBOL, "marginType": "CROSSED"})
     if m == {} or m.get("code") == -4046:
         print("✅ 全倉模式設定成功（或已是全倉）")
     else:
-        print("❌ 全倉模式設定失敗:", m); return False
+        print("❌ 全倉模式設定失敗:", m)
+        return False
 
     print("\n⚙️ 嘗試設定槓桿 20x...")
     l = _req("POST", "/fapi/v1/leverage", {"symbol": SYMBOL, "leverage": 20})
     if "leverage" in l:
         print(f"✅ 槓桿設定成功：{l['leverage']}x")
     else:
-        print("❌ 槓桿設定失敗:", l); return False
+        print("❌ 槓桿設定失敗:", l)
+        return False
 
     print("\n🎯 初始化完成：全倉、20x、交易對", SYMBOL)
     print("────────────────────────────────────────\n")
@@ -97,7 +120,8 @@ def get_position(symbol=SYMBOL):
 def get_capacity(leverage=20):
     acc = _req("GET", "/fapi/v2/account")
     if "availableBalance" not in acc:
-        print("🚫 無法取得帳戶資訊:", acc); return 0
+        print("🚫 無法取得帳戶資訊:", acc)
+        return 0
     bal = float(acc["availableBalance"])
     price = float(_req("GET", "/fapi/v1/ticker/price", {"symbol": SYMBOL})["price"])
     safe = (bal * leverage / price) * 0.9
@@ -108,20 +132,29 @@ def get_capacity(leverage=20):
 def buy_market(qty):
     amt, entry, _ = get_position()
     if amt > 0:
-        print(f"⚠️ 已有多單 {amt} BTC（均價 {entry}），不再開倉。"); return
+        print(f"⚠️ 已有多單 {amt} BTC（均價 {entry}），不再開倉。")
+        return
     print(f"➡️ 市價開多 {qty} BTC ...")
-    print("✅ 開倉結果:", _req("POST", "/fapi/v1/order",
-                         {"symbol": SYMBOL, "side": "BUY", "type": "MARKET", "quantity": qty}))
+    print(
+        "✅ 開倉結果:",
+        _req("POST", "/fapi/v1/order", {"symbol": SYMBOL, "side": "BUY", "type": "MARKET", "quantity": qty}),
+    )
 
 
 def sell_close():
     amt, entry, upnl = get_position()
     if amt <= 0:
-        print("ℹ️ 無多單，不執行平倉。"); return
+        print("ℹ️ 無多單，不執行平倉。")
+        return
     print(f"📊 平倉 {amt} BTC，均價 {entry}，浮盈虧 {upnl:.2f} USDT")
-    print("✅ 平倉結果:",
-          _req("POST", "/fapi/v1/order",
-               {"symbol": SYMBOL, "side": "SELL", "type": "MARKET", "quantity": round(amt, 3)}))
+    print(
+        "✅ 平倉結果:",
+        _req(
+            "POST",
+            "/fapi/v1/order",
+            {"symbol": SYMBOL, "side": "SELL", "type": "MARKET", "quantity": round(amt, 3)},
+        ),
+    )
 
 
 # === 根據 JSON recommendation 操作 ===
@@ -137,14 +170,16 @@ def process_recommendation(json_path: str, live: bool = False):
     print(f"📄 Assessment recommendation: {rec}")
 
     if not rec:
-        print("⚠️ recommendation 欄位不存在，無法決定操作。"); return
+        print("⚠️ recommendation 欄位不存在，無法決定操作。")
+        return
 
     rec = str(rec).strip().lower()
 
     if rec in ["買入", "buy", "long"]:
         print("🔔 建議：買入 (Long)")
         if not live:
-            print("[DRY RUN] 不會下單。加上 --live 以執行。"); return
+            print("[DRY RUN] 不會下單。加上 --live 以執行。")
+            return
         if setup():
             qty = get_capacity()
             if qty > 0:
@@ -152,7 +187,8 @@ def process_recommendation(json_path: str, live: bool = False):
     elif rec in ["賣出", "sell", "平倉", "exit"]:
         print("🔔 建議：賣出 / 平倉 (Close Long)")
         if not live:
-            print("[DRY RUN] 不會下單。加上 --live 以執行。"); return
+            print("[DRY RUN] 不會下單。加上 --live 以執行。")
+            return
         if setup():
             sell_close()
     elif rec in ["持有", "hold", "觀望"]:
@@ -182,6 +218,9 @@ def main():
         SECRET_KEY = cfg.get("SECRET_KEY", SECRET_KEY)
         BASE_URL = cfg.get("BASE_URL", BASE_URL)
         SYMBOL = cfg.get("SYMBOL", SYMBOL)
+
+    # 自動同步時間
+    get_server_time_offset()
 
     process_recommendation(args.json, live=args.live)
 
