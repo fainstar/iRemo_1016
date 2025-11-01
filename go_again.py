@@ -59,7 +59,7 @@ def _req(method, endpoint, params=None):
         params = {}
     # 使用修正後的時間戳
     params["timestamp"] = int(time.time() * 1000 + TIME_OFFSET)
-    params["recvWindow"] = 1000  # 允許 5 秒誤差
+    params["recvWindow"] = 1000  # 允許 1 秒誤差
     params["signature"] = _sign(params)
     headers = {"X-MBX-APIKEY": API_KEY}
     url = BASE_URL + endpoint
@@ -124,7 +124,7 @@ def get_capacity(leverage=20):
         return 0
     bal = float(acc["availableBalance"])
     price = float(_req("GET", "/fapi/v1/ticker/price", {"symbol": SYMBOL})["price"])
-    safe = (bal * leverage / price) * 0.9
+    safe = (bal * leverage / price) * 0.7  # 70% 安全係數
     print(f"💰 可用:{bal:.2f}USDT｜槓桿:{leverage}x｜現價:{price:.2f}｜建議開倉:{safe:.4f}BTC")
     return round(safe, 3)
 
