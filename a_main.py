@@ -7,14 +7,14 @@ from datetime import datetime
 def run_job():
     """執行整個交易流程（fetch → feature → analysis → decision）"""
     steps = [
-        ("📥 獲取 4H K 線數據", ["python3", "fetch_data.py"]),
-        ("🧮 特徵工程", ["python3", "add_features.py"]),
-        ("📊 特徵分箱", ["python3", "binned_features.py"]),
-        ("🔍 箱子分析", ["python3", "feature_bin_analysis.py"]),
-        ("📈 計算交易分數", ["python3", "calculate_trading_scores.py"]),
-        ("🧾 生成評估報告", ["python3", "generate_latest_assessment.py"]),
-        ("📨 發送到 Discord", ["python3", "send_to_discord.py"]),
-        ("🤖 執行交易建議", ["python3", "go_again.py", "--live"]),
+        ("📥 獲取 4H K 線數據", ["python", "fetch_data.py"]),
+        ("🧮 特徵工程", ["python", "add_features.py"]),
+        ("📊 特徵分箱", ["python", "binned_features.py"]),
+        ("🔍 箱子分析", ["python", "feature_bin_analysis.py"]),
+        ("📈 計算交易分數", ["python", "calculate_trading_scores.py"]),
+        ("🧾 生成評估報告", ["python", "generate_latest_assessment.py"]),
+        ("📨 發送到 Discord", ["python", "send_to_discord.py"]),
+        ("🤖 執行交易建議", ["python", "go_again.py", "--live"]),
     ]
 
     print("\n────────────────────────────────────────")
