@@ -102,11 +102,6 @@ def generate_features(input_path: str, output_path: str) -> pd.DataFrame:
     print("✅ 成功產生技術特徵並儲存：", output_path)
     print("資料形狀：", df.shape)
 
-    vwap_cols = [col for col in df.columns if 'VWAP' in col]
-    print("\nVWAP 相關欄位：", vwap_cols)
-    print("\nVWAP 統計資訊：")
-    print(df[vwap_cols].describe())
-
     return df
 
 

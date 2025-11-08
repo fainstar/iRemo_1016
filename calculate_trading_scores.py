@@ -73,7 +73,11 @@ df['buy_score'] = df.apply(calculate_buy_score, axis=1)
 df['sell_score'] = df.apply(calculate_sell_score, axis=1)
 
 # 保存結果
-output_df = df[['Date', 'open', 'high', 'low', 'close', 'buy_score', 'sell_score']]
+# 新增執行價格/時間欄位：訊號會在下一筆的 open 執行
+df['exec_open'] = df['open'].shift(-1)
+df['exec_date'] = df['Date'].shift(-1)
+
+output_df = df[['Date', 'open', 'high', 'low', 'close', 'buy_score', 'sell_score', 'exec_date', 'exec_open']]
 output_df.to_csv('data/trading_signals_with_scores.csv', index=False)
 
 print("完成！結果已保存到 trading_signals_with_scores.csv")
