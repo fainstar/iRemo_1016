@@ -30,11 +30,7 @@ CSV_PATH = DATA_DIR / "cleaned_features.csv"
 DB_PATH = DATA_DIR / "trading_results.db"
 
 # Hard-coded MySQL credentials (as requested)
-MYSQL_HOST = "49.213.238.86"
-MYSQL_PORT = 2306
-MYSQL_USER = "remo0811"
-MYSQL_PASSWORD = "Oomayb1oO"
-MYSQL_DB = "trading_results"
+
 
 
 def safe_float(x):
